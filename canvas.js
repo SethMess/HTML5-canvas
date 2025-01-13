@@ -37,12 +37,27 @@ let c = canvas.getContext('2d');
 
 // }
 
+function Circle(x, y){
+    this.x = x;
+    this.y = y;
+
+    this.draw = function(){
+        console.log('it WORKED');
+    }
+}
+
+
+
 let x = Math.random() * innerWidth;
 let y = Math.random() * innerHeight;
 let dx = (Math.random() - 0.5) * 8;
 let dy = (Math.random() - 0.5) * 8;
 let radius = 30;
 let colour = make_random_colour();
+
+let circle = new Circle(x,y);
+circle.draw();
+
 
 function animate() {
 
