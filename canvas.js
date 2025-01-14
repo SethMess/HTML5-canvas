@@ -37,26 +37,56 @@ let c = canvas.getContext('2d');
 
 // }
 
-function Circle(x, y){
+function Circle(x, y, radius, dx, dy, colour){
     this.x = x;
     this.y = y;
+    this.radius = radius;
+    this.dx = dx;
+    this.dy = dy;
+    this.colour = colour;
+
 
     this.draw = function(){
-        console.log('it WORKED');
+        // console.log('it WORKED');
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, 0, Math.PI * 3, false);
+        c.strokeStyle = this.colour;
+        c.lineWidth = 3;
+        c.stroke();
+
+        if (this.x + this.radius > innerWidth) {
+            this.dx = -this.dx;
+        }
+        if (this.x - this.radius < 0) {
+            this.dx = -this.dx;
+        }
+    
+        if (this.y + this.radius > innerHeight) {
+            this.dy = -this.dy;
+        }
+        if (this.y - this.radius < 0) {
+            this.dy = -this.dy;
+        }
+    
+        this.x += this.dx;
+        this.y += this.dy;
     }
 }
 
+let circles = [];
+for (var i = 0; i < 20; i++) {
 
+    let x = Math.random() * innerWidth;
+    let y = Math.random() * innerHeight;
+    let dx = (Math.random() - 0.5) * 8;
+    let dy = (Math.random() - 0.5) * 8;
+    let radius = 30;
+    let colour = make_random_colour();
 
-let x = Math.random() * innerWidth;
-let y = Math.random() * innerHeight;
-let dx = (Math.random() - 0.5) * 8;
-let dy = (Math.random() - 0.5) * 8;
-let radius = 30;
-let colour = make_random_colour();
-
-let circle = new Circle(x,y);
-circle.draw();
+    let circle = new Circle(x,y, radius, dx, dy, colour);
+    circles[i] = circle;
+}
+// circle.draw();
 
 
 function animate() {
@@ -64,30 +94,34 @@ function animate() {
     // console.log('hi');
     c.clearRect(0, 0, innerWidth, innerHeight);
 
-    c.beginPath();
-    c.arc(x, y, radius, 0, Math.PI * 3, false);
-    c.strokeStyle = colour;
-    c.lineWidth = 3;
-    c.stroke();
+    // c.beginPath();
+    // c.arc(x, y, radius, 0, Math.PI * 3, false);
+    // c.strokeStyle = colour;
+    // c.lineWidth = 3;
+    // c.stroke();
+    circles.forEach(circle => {
+        circle.draw();
+    });
 
 
 
-    if (x + radius > innerWidth) {
-        dx = -dx;
-    }
-    if (x - radius < 0) {
-        dx = -dx;
-    }
 
-    if (y + radius > innerHeight) {
-        dy = -dy;
-    }
-    if (y - radius < 0) {
-        dy = -dy;
-    }
+    // if (x + radius > innerWidth) {
+    //     dx = -dx;
+    // }
+    // if (x - radius < 0) {
+    //     dx = -dx;
+    // }
 
-    x += dx;
-    y += dy;
+    // if (y + radius > innerHeight) {
+    //     dy = -dy;
+    // }
+    // if (y - radius < 0) {
+    //     dy = -dy;
+    // }
+
+    // x += dx;
+    // y += dy;
 
     requestAnimationFrame(animate);
 }
