@@ -37,7 +37,7 @@ let c = canvas.getContext('2d');
 
 // }
 
-function Circle(x, y, radius, dx, dy, colour){
+function Circle(x, y, radius, dx, dy, colour) {
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -46,7 +46,7 @@ function Circle(x, y, radius, dx, dy, colour){
     this.colour = colour;
 
 
-    this.draw = function(){
+    this.draw = function () {
         // console.log('it WORKED');
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 3, false);
@@ -60,30 +60,32 @@ function Circle(x, y, radius, dx, dy, colour){
         if (this.x - this.radius < 0) {
             this.dx = -this.dx;
         }
-    
+
         if (this.y + this.radius > innerHeight) {
             this.dy = -this.dy;
         }
         if (this.y - this.radius < 0) {
             this.dy = -this.dy;
         }
-    
+
         this.x += this.dx;
         this.y += this.dy;
     }
 }
 
 let circles = [];
-for (var i = 0; i < 20; i++) {
-
-    let x = Math.random() * innerWidth;
-    let y = Math.random() * innerHeight;
+for (var i = 0; i < 200; i++) {
+    let radius = 30;
+    // let x = Math.random() * innerWidth;
+    // let y = Math.random() * innerHeight;
+    let x = (Math.random() * (innerWidth - radius)) + radius;
+    let y = (Math.random() * (innerHeight - radius)) + radius;
     let dx = (Math.random() - 0.5) * 8;
     let dy = (Math.random() - 0.5) * 8;
-    let radius = 30;
+
     let colour = make_random_colour();
 
-    let circle = new Circle(x,y, radius, dx, dy, colour);
+    let circle = new Circle(x, y, radius, dx, dy, colour);
     circles[i] = circle;
 }
 // circle.draw();
