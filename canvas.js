@@ -47,24 +47,19 @@ function Circle(x, y, radius, dx, dy, colour) {
 
 
     this.draw = function () {
-        // console.log('it WORKED');
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 3, false);
         c.strokeStyle = this.colour;
         c.lineWidth = 3;
         c.stroke();
+        c.fillStyle = this.colour;
+        c.fill();
 
-        if (this.x + this.radius > innerWidth) {
+        if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
             this.dx = -this.dx;
         }
-        if (this.x - this.radius < 0) {
-            this.dx = -this.dx;
-        }
 
-        if (this.y + this.radius > innerHeight) {
-            this.dy = -this.dy;
-        }
-        if (this.y - this.radius < 0) {
+        if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
             this.dy = -this.dy;
         }
 
@@ -73,20 +68,20 @@ function Circle(x, y, radius, dx, dy, colour) {
     }
 }
 
-let circles = [];
+let circlesArray = [];
 for (var i = 0; i < 200; i++) {
     let radius = 30;
     // let x = Math.random() * innerWidth;
     // let y = Math.random() * innerHeight;
-    let x = (Math.random() * (innerWidth - radius)) + radius;
-    let y = (Math.random() * (innerHeight - radius)) + radius;
+    let x = (Math.random() * (innerWidth - 2*radius)) + radius;
+    let y = (Math.random() * (innerHeight - 2*radius)) + radius;
     let dx = (Math.random() - 0.5) * 8;
     let dy = (Math.random() - 0.5) * 8;
 
     let colour = make_random_colour();
 
     let circle = new Circle(x, y, radius, dx, dy, colour);
-    circles[i] = circle;
+    circlesArray[i] = circle;
 }
 // circle.draw();
 
@@ -101,7 +96,7 @@ function animate() {
     // c.strokeStyle = colour;
     // c.lineWidth = 3;
     // c.stroke();
-    circles.forEach(circle => {
+    circlesArray.forEach(circle => {
         circle.draw();
     });
 
