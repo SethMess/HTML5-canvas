@@ -55,14 +55,14 @@ const colourArray = [
 ]
 
 window.addEventListener('mousemove', movement);
-window.addEventListener('touchmove', movement);
+window.addEventListener('ontouchmove', movement);
 
-document.body.addEventListener("touchmove", function (e) {
-    if (e.target == canvas) {
-      e.preventDefault();
-      movement();
-    }
-  }, false);
+// document.body.addEventListener("ontouchmove", function (e) {
+//     if (e.target == canvas) {
+//       e.preventDefault();
+//       movement();
+//     }
+//   }, false);
 
 window.addEventListener('resize', function () {
     canvas.width = window.innerWidth;
