@@ -55,7 +55,7 @@ const colourArray = [
 ]
 
 window.addEventListener('mousemove', movement);
-window.addEventListener('ontouchmove', movement);
+canvas.addEventListener('ontouchmove', movement);
 
 // document.body.addEventListener("ontouchmove", function (e) {
 //     if (e.target == canvas) {
