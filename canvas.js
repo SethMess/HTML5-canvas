@@ -56,6 +56,7 @@ const colourArray = [
 
 window.addEventListener('mousemove', movement);
 canvas.addEventListener('touchmove', movement);
+canvas.addEventListener('touchstart', movement); // Add touchstart event listener
 
 // document.body.addEventListener("ontouchmove", function (e) {
 //     if (e.target == canvas) {
@@ -73,7 +74,7 @@ window.addEventListener('resize', function () {
 
 
 function movement(event) {
-    if (event.type === 'touchmove') {
+    if (event.type === 'touchmove' || event.type === 'touchstart') {
         mouse.x = event.touches[0].clientX;
         mouse.y = event.touches[0].clientY;
     } else {
