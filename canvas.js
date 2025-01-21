@@ -72,9 +72,17 @@ window.addEventListener('resize', function () {
     init();
 });
 
+let sliderContainer = document.getElementById('sliderContainer');
 let circleSlider = document.getElementById('circleSlider');
+
 circleSlider.addEventListener('input', function () {
     init();
+});
+
+window.addEventListener('keydown', function (event) {
+    if (event.code === 'Space') {
+        sliderContainer.style.display = sliderContainer.style.display === 'none' ? 'block' : 'none';
+    }
 });
 
 function movement(event) {
