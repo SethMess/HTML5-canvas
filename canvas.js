@@ -72,6 +72,10 @@ window.addEventListener('resize', function () {
     init();
 });
 
+let circleSlider = document.getElementById('circleSlider');
+circleSlider.addEventListener('input', function () {
+    init();
+});
 
 function movement(event) {
     if (event.type === 'touchmove' || event.type === 'touchstart') {
@@ -136,19 +140,15 @@ function Circle(x, y, radius, dx, dy, colour) {
 
 let circlesArray = [];
 function init() {
-    for (var i = 0; i < 800; i++) {
+    circlesArray = [];
+    let numberOfCircles = circleSlider.value;
+    for (var i = 0; i < numberOfCircles; i++) {
         let radius = Math.random() * 3 + 1;
-        // let x = Math.random() * innerWidth;
-        // let y = Math.random() * innerHeight;
         let x = (Math.random() * (innerWidth - 2 * radius)) + radius;
         let y = (Math.random() * (innerHeight - 2 * radius)) + radius;
         let dx = (Math.random() - 0.5) * 6;
         let dy = (Math.random() - 0.5) * 6;
-
-        // let colour = make_random_colour();
         let colour = colourArray[Math.floor(Math.random() * colourArray.length)];
-
-
         let circle = new Circle(x, y, radius, dx, dy, colour);
         circlesArray[i] = circle;
     }

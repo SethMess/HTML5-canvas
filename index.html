@@ -15,10 +15,24 @@
             overflow: hidden;
             /* Hide scrollbars */
         }
+
+        #sliderContainer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
 <body>
+    <div id="sliderContainer">
+        <label for="circleSlider">Number of Circles: </label>
+        <input type="range" id="circleSlider" min="100" max="5000" value="800">
+    </div>
     <canvas></canvas>
     <script src="canvas.js"></script>
 </body>
